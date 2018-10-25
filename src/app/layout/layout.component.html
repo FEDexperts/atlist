@@ -1,0 +1,28 @@
+<ion-header class="layout" no-border>
+    <div class="layout__toolbar-wrapper">
+        <ion-toolbar transparent>
+            <div class="toolbar-content">
+                <ion-buttons slot="start">
+                    <ion-menu-button color="light"></ion-menu-button>
+                </ion-buttons>
+                <ion-img src="assets/logo.png"></ion-img>
+                <ion-buttons slot="end">
+                    <ion-img src="assets/icon/home.png"></ion-img>
+                </ion-buttons>
+            </div>
+        </ion-toolbar>
+        <div class="layout__logo"></div>
+        <div class="layout__title"></divclass>
+        <div class="toolbar-bottom">
+            <ion-img src="assets/icon/share.png" class="share"></ion-img>
+            <app-menu></app-menu>
+        </div>
+    </div>
+    <div class="layout__header-background">
+        <img src="assets/food-header.jpg"/>
+    </div>
+</ion-header>
+
+<ion-content padding>
+    <ion-router-outlet></ion-router-outlet>
+</ion-content>

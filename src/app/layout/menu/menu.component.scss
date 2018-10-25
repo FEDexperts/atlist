@@ -1,0 +1,37 @@
+:host {
+  position: relative;
+  top: 15px;
+  right: 10px;
+  width: 145px;
+  height: 100%;
+}
+
+.menu {
+  height: 100%;
+  .menu-icon {
+    position: absolute;
+    width: 19px;
+    height: 20px;
+    cursor: pointer;
+  }
+  &--all {
+    top: -7px;
+    right: 3px;
+  }
+  &--green {
+    top: 7px;
+    right: 27px;
+  }
+  &--red {
+    top: 16px;
+    right: 55px;
+  }
+  &--orange {
+    top: 23px;
+    right: 85px;
+  }
+  &--yellow {
+    top: 30px;
+    right: 115px;
+  }
+}

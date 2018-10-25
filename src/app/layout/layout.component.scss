@@ -1,0 +1,56 @@
+ion-toolbar {
+  --background: none;
+}
+
+.layout {
+  &__toolbar-wrapper {
+    height: 175px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: white;
+
+    div.toolbar-content {
+      display: flex;
+      justify-content: space-between;
+    }
+    div.toolbar-bottom {
+      height: 70px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      z-index: 1;
+      ion-img {
+        width: 40px;
+        position: relative;
+        cursor: pointer;
+        &.share {
+          left: 10px;
+        }
+      }
+    }
+  }
+  &__logo {
+
+  }
+  &__logo {
+    height: 74px;
+    font-family: Assistant;
+    font-size: 96px;
+    font-weight: 600;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: right;
+    color: #ffffff;
+  }
+  &__header-background {
+    position: absolute;
+    top: 0px;
+    img {
+      height: 175px;
+      width: 100%;
+    }
+  }
+}
