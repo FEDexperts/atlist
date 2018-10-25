@@ -31,12 +31,12 @@ ion-toolbar {
     }
   }
   &__logo {
-
+    height: 49px;
   }
-  &__logo {
+  &__title {
     height: 74px;
     font-family: Assistant;
-    font-size: 96px;
+    font-size: 30px;
     font-weight: 600;
     font-style: normal;
     font-stretch: normal;
@@ -44,6 +44,10 @@ ion-toolbar {
     letter-spacing: normal;
     text-align: right;
     color: #ffffff;
+    z-index: 1;
+    position: relative;
+    right: 10px;
+    top: 10px;
   }
   &__header-background {
     position: absolute;

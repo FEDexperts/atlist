@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Inject, Input, OnInit} from '@angular/core';
 
 @Component({
     selector: 'app-layout',
@@ -7,9 +7,7 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class LayoutComponent implements OnInit {
 
-    @Input() title: string;
-
-    constructor() {
+    constructor(@Inject('PAGE_TITLE') public title) {
     }
 
     ngOnInit() {

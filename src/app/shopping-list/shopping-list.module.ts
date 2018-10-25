@@ -30,7 +30,13 @@ const routes: Routes = [
         RouterModule.forChild(routes),
         LayoutModule
     ],
-    declarations: [ShoppingListPage]
+    declarations: [ShoppingListPage],
+    providers: [
+        {
+            provide: 'PAGE_TITLE',
+            useValue: 'רשימת קניות'
+        }
+    ]
 })
 export class ShoppingListPageModule {
 }
