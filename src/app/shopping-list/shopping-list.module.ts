@@ -8,8 +8,7 @@ import { IonicModule } from '@ionic/angular';
 import { ShoppingListPage } from './shopping-list.page';
 import { LayoutComponent } from '../layout/layout.component';
 import { LayoutModule } from '../layout/layout.module';
-import { SearchFieldComponent } from '../components/search-field/search-field.component';
-import { ListComponent } from '../components/list/list.component';
+import { SharedModule } from '../shared/shared.module';
 
 const routes: Routes = [
     {
@@ -31,8 +30,9 @@ const routes: Routes = [
         IonicModule,
         RouterModule.forChild(routes),
         LayoutModule,
+        SharedModule,
     ],
-    declarations: [ShoppingListPage, SearchFieldComponent, ListComponent],
+    declarations: [ShoppingListPage],
     providers: [
         {
             provide: 'PAGE_TITLE',

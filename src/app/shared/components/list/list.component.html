@@ -1,7 +1,7 @@
 <div class="list">
   <ion-list>
     <ion-item class="list__item" *ngFor="let item of items$ | async">
-      <ion-label class="list__item__title">{{item.name}}</ion-label>
+      <ion-label class="list__item__title">{{item.itemName}}</ion-label>
       <ion-select class="list__item__units" interface="action-sheet" placeholder="בחר יחידה">
         <ion-select-option>יחידה</ion-select-option>
       </ion-select>

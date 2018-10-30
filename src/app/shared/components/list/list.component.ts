@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ListItem } from '../../shared/interaces/list-item.interface';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { ListItem } from '../../interaces/list-item.interface';
 
 @Component({
   selector: 'app-list',
