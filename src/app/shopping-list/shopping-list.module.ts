@@ -1,13 +1,15 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {FormsModule} from '@angular/forms';
-import {Routes, RouterModule} from '@angular/router';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { Routes, RouterModule } from '@angular/router';
 
-import {IonicModule} from '@ionic/angular';
+import { IonicModule } from '@ionic/angular';
 
-import {ShoppingListPage} from './shopping-list.page';
-import {LayoutComponent} from '../layout/layout.component';
-import {LayoutModule} from '../layout/layout.module';
+import { ShoppingListPage } from './shopping-list.page';
+import { LayoutComponent } from '../layout/layout.component';
+import { LayoutModule } from '../layout/layout.module';
+import { SearchFieldComponent } from '../components/search-field/search-field.component';
+import { ListComponent } from '../components/list/list.component';
 
 const routes: Routes = [
     {
@@ -28,9 +30,9 @@ const routes: Routes = [
         FormsModule,
         IonicModule,
         RouterModule.forChild(routes),
-        LayoutModule
+        LayoutModule,
     ],
-    declarations: [ShoppingListPage],
+    declarations: [ShoppingListPage, SearchFieldComponent, ListComponent],
     providers: [
         {
             provide: 'PAGE_TITLE',

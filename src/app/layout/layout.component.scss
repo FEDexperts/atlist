@@ -1,60 +1,58 @@
 ion-toolbar {
-  --background: none;
+    --background: none;
 }
 
 .layout {
-  &__toolbar-wrapper {
-    height: 175px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    background-color: white;
-
-    div.toolbar-content {
-      display: flex;
-      justify-content: space-between;
-    }
-    div.toolbar-bottom {
-      height: 70px;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      z-index: 1;
-      ion-img {
-        width: 40px;
-        position: relative;
-        cursor: pointer;
-        &.share {
-          left: 10px;
+    &__toolbar-wrapper {
+        height: 175px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background-color: white;
+        div.toolbar-content {
+            display: flex;
+            justify-content: space-between;
         }
-      }
+        div.toolbar-bottom {
+            height: 90px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            z-index: 1;
+            ion-img {
+                width: 40px;
+                position: relative;
+                cursor: pointer;
+                &.share {
+                    left: 10px;
+                }
+            }
+        }
     }
-  }
-  &__logo {
-    height: 49px;
-  }
-  &__title {
-    height: 74px;
-    font-family: Assistant;
-    font-size: 30px;
-    font-weight: 600;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    text-align: right;
-    color: #ffffff;
-    z-index: 1;
-    position: relative;
-    right: 10px;
-    top: 10px;
-  }
-  &__header-background {
-    position: absolute;
-    top: 0px;
-    img {
-      height: 175px;
-      width: 100%;
+    &__logo {
+        height: 49px;
     }
-  }
+    &__title {
+        height: 74px;
+        font-family: Assistant;
+        font-size: 30px;
+        font-weight: 600;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: right;
+        color: #ffffff;
+        z-index: 1;
+        position: relative;
+        right: 10px;
+    }
+    &__header-background {
+        position: absolute;
+        top: 0px;
+        img {
+            height: 175px;
+            width: 100%;
+        }
+    }
 }

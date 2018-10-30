@@ -1,0 +1,23 @@
+.list {
+    direction: rtl;
+    &__item {
+        &__title {
+        }
+        &__units {
+            width: 35%;
+        }
+        &--quantity {
+            margin: 0;
+        }
+        &--add {
+            opacity: 0.5;
+        }
+        &--remove {
+            opacity: 0.5;
+        }
+    }
+}
+
+.action {
+    cursor: pointer;
+}

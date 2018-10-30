@@ -1,3 +1,4 @@
 <div>
-  Shopping List
+  <app-search-field [items$]="items" key="foodName" (onSearchChange)="search($event)"></app-search-field>
+  <app-list [items$]="listItems"></app-list>
 </div>

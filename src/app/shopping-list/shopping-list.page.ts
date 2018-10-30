@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../shared/services/api.service';
+import { environment } from '../../environments/environment';
+import { filter, tap, take, map, distinctUntilChanged, throttleTime, debounceTime, debounce } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { ListItem } from '../shared/interaces/list-item.interface';
 
 @Component({
   selector: 'app-shopping-list',
@@ -7,9 +12,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShoppingListPage implements OnInit {
 
-  constructor() { }
+  items: Observable<string[]>;
+  listItems: Observable<ListItem[]>;
+
+  constructor(private api: ApiService) { }
 
   ngOnInit() {
+    this.listItems = this.api.get(`${environment.local}api/lists/shopping`);
+  }
+
+  search(val) {
+    this.items = this.api.get(`${environment.local}api/foods/list`)
+      .pipe(
+        map(res => {
+          return res
+            .filter(item => item.FoodName.indexOf(val) !== -1)
+            .map(item => { return { foodName: item.FoodName } })
+        }),
+      )
   }
 
 }

@@ -1,21 +1,21 @@
 <ion-header class="layout" no-border>
     <div class="layout__toolbar-wrapper">
         <ion-toolbar transparent>
-            <ion-buttons slot="secondary">
+            <ion-buttons slot="start">
                 <ion-buttons>
                     <ion-menu-button color="light"></ion-menu-button>
                 </ion-buttons>
             </ion-buttons>
 
-            <ion-buttons slot="primary">
+            <ion-title>
+                <ion-img class="layout__logo" src="assets/logo.png"></ion-img>
+            </ion-title>
+
+            <ion-buttons slot="end">
                 <ion-button>
                     <ion-img src="assets/icon/home.png"></ion-img>
                 </ion-button>
             </ion-buttons>
-
-            <ion-title>
-                <ion-img class="layout__logo" src="assets/logo.png"></ion-img>
-            </ion-title>
         </ion-toolbar>
         <div class="layout__title">{{title}}</div>
         <div class="toolbar-bottom">
