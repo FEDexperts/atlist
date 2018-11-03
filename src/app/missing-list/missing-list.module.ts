@@ -9,6 +9,10 @@ import { MissingListPage } from './missing-list.page';
 import { LayoutComponent } from '../layout/layout.component';
 import { SharedModule } from '../shared/shared.module';
 import { LayoutModule } from '../layout/layout.module';
+import { StoreModule } from '@ngrx/store';
+import { reducer } from './store';
+import { EffectsModule } from '@ngrx/effects';
+import { MissingEffects } from './store/missing-list.effects';
 
 const routes: Routes = [
   {
@@ -29,6 +33,8 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     RouterModule.forChild(routes),
+    StoreModule.forFeature('missingList', reducer),
+    EffectsModule.forFeature([MissingEffects]),
     LayoutModule,
     SharedModule,
   ],

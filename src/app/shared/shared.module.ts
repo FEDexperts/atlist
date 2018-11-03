@@ -1,11 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SearchFieldComponent } from './components/search-field/search-field.component';
+import { SearchFoodComponent } from './components/search-food/search-food.component';
 import { ListComponent } from './components/list/list.component';
 import { IonicModule } from '@ionic/angular';
+import { StoreModule } from '@ngrx/store';
+
+import * as fromSearchFood from './components/search-food/store'
+import { EffectsModule } from '@ngrx/effects';
 
 const SHARED_COMPONENTS = [
-  SearchFieldComponent,
+  SearchFoodComponent,
   ListComponent
 ]
 
@@ -13,6 +17,8 @@ const SHARED_COMPONENTS = [
   imports: [
     CommonModule,
     IonicModule,
+    StoreModule.forFeature('search', fromSearchFood.reducer),
+    EffectsModule.forFeature([fromSearchFood.SearchEffects]),
   ],
   declarations: [
     ...SHARED_COMPONENTS,

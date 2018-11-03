@@ -18,18 +18,18 @@ export class ShoppingListPage implements OnInit {
   constructor(private api: ApiService) { }
 
   ngOnInit() {
-    this.listItems = this.api.get(`${environment.local}api/lists/shopping`);
+    this.listItems = this.api.get(`${environment.url}api/lists/shopping`);
   }
 
   search(val) {
-    this.items = this.api.get(`${environment.local}api/foods/list`)
-      .pipe(
-        map(res => {
-          return res
-            .filter(item => item.FoodName.indexOf(val) !== -1)
-            .map(item => { return { foodName: item.FoodName } })
-        }),
-      )
+    // this.items = this.api.get(`${environment.url}api/foods/list`)
+    //   .pipe(
+    //     map(res => {
+    //       return res
+    //         .filter(item => item.FoodName.indexOf(val) !== -1)
+    //         .map(item => { return { foodName: item.FoodName } })
+    //     }),
+    //   )
   }
 
 }

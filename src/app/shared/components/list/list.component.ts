@@ -19,11 +19,6 @@ export class ListComponent implements OnInit {
 
   ngOnInit() {
     this.quantity = 0;
-
-    this.items$
-      .pipe(
-        tap(items => console.log(items)),
-      )
   }
 
   add() {
