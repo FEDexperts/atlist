@@ -1,32 +1,43 @@
-.search-food {
-    width: 80%;
-    margin: 10px auto;
+.search {
+  width: 80%;
+  margin: 10px auto;
+  direction: rtl;
+  &__container {
+    border: 1px solid;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    margin-right: 5px;
+  }
+  &__field {
+    border: none;
     direction: rtl;
-    &__field {
-        border: 1px solid;
-        border-radius: 10px;
-        direction: rtl;
-        margin-right: 10px;
+    margin-right: 10px;
+  }
+  &__add {
+    position: relative;
+    left: 5px;
+    cursor: pointer;
+  }
+  &__list {
+    width: inherit;
+    height: 150px;
+    position: absolute;
+    overflow-y: auto;
+    border: 1px solid;
+    margin-top: 2px;
+    border-radius: 10px;
+    z-index: 1;
+    ion-item {
+      font-size: 14px;
+      height: 25px;
+      ion-label {
+        margin-top: -10px;
+      }
     }
-    &__list {
-        width: inherit;
-        height: 150px;
-        position: absolute;
-        overflow-y: auto;
-        border: 1px solid;
-        margin-top: 2px;
-        border-radius: 10px;
-        z-index: 1;
-        ion-item {
-            font-size: 14px;
-            height: 25px;
-            ion-label {
-                margin-top: -10px;
-            }
-        }
-    }
+  }
 }
 
 .content {
-    display: flex;
+  display: flex;
 }

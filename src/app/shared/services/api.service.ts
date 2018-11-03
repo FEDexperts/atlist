@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -11,5 +11,9 @@ export class ApiService {
 
   get<T>(url, params?): Observable<T> {
     return this.http.get<T>(url, { params: params });
+  }
+
+  post(url, params?): Observable<any> {
+    return this.http.post(url, params);
   }
 }

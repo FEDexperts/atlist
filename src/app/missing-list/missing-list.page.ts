@@ -10,6 +10,8 @@ import { GetList, GetListItem } from './store';
 import * as fromMissingList from './store';
 import { getListState, getSelectedState } from './store/missing-list.selectors';
 import { food } from '../shared/interaces/food.interface';
+import { EnableAdd } from '../shared/components/search-food/store/search-food.actions';
+import { isUndefined } from 'util';
 
 @Component({
   selector: 'app-missing-list',
@@ -35,7 +37,10 @@ export class MissingListPage implements OnInit {
     this.store
       .pipe(
         select(getSelectedState),
-        tap(res => console.log(res)),
+        filter(res => !isUndefined(res)),
+        tap(res => {
+          this.store.dispatch(new EnableAdd(!res));
+        }),
       )
       .subscribe()
   }

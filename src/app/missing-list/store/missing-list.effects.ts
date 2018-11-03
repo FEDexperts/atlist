@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Actions, Effect, ofType } from "@ngrx/effects";
-import { GetList, missingListActions, missingListActionsTypes, GetListSuccess, GetListItem, GetListItemSuccess } from "./missing-list.actions";
+import { GetList, missingListActions, missingListActionsTypes, GetListSuccess, GetListItem, GetListItemSuccess, AddItem, AddItemSuccess } from "./missing-list.actions";
 import { tap, switchMap, map } from "rxjs/operators";
 import { of } from "rxjs";
 import { ApiService } from "../../shared/services/api.service";
@@ -35,6 +35,20 @@ export class MissingEffects {
                         })
                     )
             })
+        )
+
+    @Effect()
+    addItem$ = this.actions$
+        .pipe(
+            ofType<AddItem>(missingListActionsTypes.ADD_ITEM),
+            switchMap(action => {
+                return this.api.post(`${environment.url}api/lists/missing/${action.payload.listId}`, action.payload.item)
+                    .pipe(
+                        map(res => {
+                            return new AddItemSuccess(res)
+                        })
+                    )
+            }),
         )
 
     constructor(private actions$: Actions, private api: ApiService) { }

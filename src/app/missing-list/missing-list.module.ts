@@ -43,7 +43,7 @@ const routes: Routes = [
     {
       provide: 'PAGE_TITLE',
       useValue: 'רשימת חוסרים'
-    }
+    },
   ]
 })
 export class MissingListPageModule { }

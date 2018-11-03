@@ -5,8 +5,8 @@ import { food } from '../../interaces/food.interface';
 import * as fromSearch from './store';
 import { Store, select } from '@ngrx/store';
 import { Search } from './store/search-food.actions';
-import { getSearchResultsState } from './store/search-food.selectors';
-import { tap } from 'rxjs/operators';
+import { getSearchResultsState, getSearchEnableAddState } from './store/search-food.selectors';
+import { AddItem } from '../../../missing-list/store';
 
 @Component({
   selector: 'app-search-food',
@@ -18,6 +18,12 @@ export class SearchFoodComponent implements OnInit {
   selected: string;
   showList: boolean;
   items$: Observable<food[]>;
+  enableAdd$: Observable<boolean>;
+
+  private item;
+
+  @Input()
+  listId: number;
 
   @Output()
   onItemSelect = new EventEmitter();
@@ -32,6 +38,11 @@ export class SearchFoodComponent implements OnInit {
       .pipe(
         select(getSearchResultsState),
       );
+
+    this.enableAdd$ = this.store
+      .pipe(
+        select(getSearchEnableAddState),
+      )
   }
 
   search(value) {
@@ -40,9 +51,14 @@ export class SearchFoodComponent implements OnInit {
   }
 
   itemSelect(item) {
+    this.item = item;
     this.selected = item['FoodName'];
     this.showList = false;
     this.onItemSelect.emit(item);
+  }
+
+  addItem() {
+    this.store.dispatch(new AddItem({ listId: this.listId, item: this.item }));
   }
 
 }
