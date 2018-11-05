@@ -1,15 +1,20 @@
 <div class="list">
   <ion-list>
-    <ion-item class="list__item" *ngFor="let item of items$ | async">
-      <ion-label class="list__item__title">{{item.itemName}}</ion-label>
-      <ion-select class="list__item__units" interface="action-sheet" placeholder="בחר יחידה">
-        <ion-select-option>יחידה</ion-select-option>
-      </ion-select>
-      <ion-item>
-        <ion-icon class="list__item--add action" name="remove" (click)="remove()"></ion-icon>
-        <ion-label class="list__item--quantity">{{quantity}}</ion-label>
-        <ion-icon class="list__item--remove action" name="add" (click)="add()"></ion-icon>
+    <ion-item-sliding *ngFor="let item of items$ | async">
+      <ion-item class="list__item">
+        <ion-label class="list__item__title">{{item.itemName}}</ion-label>
+        <ion-select class="list__item__units" interface="action-sheet" placeholder="בחר יחידה">
+          <ion-select-option>יחידה</ion-select-option>
+        </ion-select>
+        <ion-item>
+          <app-quantity [quantity]="item.quantity" (valueChanged)="onValueChanged(item, $event)"></app-quantity>
+        </ion-item>
       </ion-item>
-    </ion-item>
+      <ion-item-options class="list--slide_options" side="end">
+        <ion-item-option>
+          <ion-icon class="list--slide_icon" name="trash" (click)="onRemoveItem(item)"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
   </ion-list>
 </div>

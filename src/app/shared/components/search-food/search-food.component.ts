@@ -1,24 +1,27 @@
-import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnInit, EventEmitter, Output, Input, OnDestroy } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
 import { food } from '../../interaces/food.interface';
 
 import * as fromSearch from './store';
 import { Store, select } from '@ngrx/store';
-import { Search } from './store/search-food.actions';
+import { Search, EnableAdd } from './store/search-food.actions';
 import { getSearchResultsState, getSearchEnableAddState } from './store/search-food.selectors';
 import { AddItem } from '../../../missing-list/store';
+import { tap, filter, takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-search-food',
   templateUrl: './search-food.component.html',
   styleUrls: ['./search-food.component.scss']
 })
-export class SearchFoodComponent implements OnInit {
+export class SearchFoodComponent implements OnInit, OnDestroy {
+
 
   selected: string;
   showList: boolean;
-  items$: Observable<food[]>;
+  items: food[];
   enableAdd$: Observable<boolean>;
+  onDestroySubject = new Subject();
 
   private item;
 
@@ -34,10 +37,18 @@ export class SearchFoodComponent implements OnInit {
   ngOnInit() {
     this.showList = false;
 
-    this.items$ = this.store
+    this.store
       .pipe(
+        takeUntil(this.onDestroySubject),
         select(getSearchResultsState),
-      );
+        filter(res => res && res.length),
+        tap(res => {
+          console.log(res)
+          this.items = res;
+          this.showList = true;
+        }),
+      )
+      .subscribe();
 
     this.enableAdd$ = this.store
       .pipe(
@@ -46,8 +57,11 @@ export class SearchFoodComponent implements OnInit {
   }
 
   search(value) {
-    this.showList = true;
-    this.store.dispatch(new Search({ searchValue: value }));
+    if (value) {
+      this.store.dispatch(new Search({ searchValue: value }));
+    } else {
+      this.showList = false;
+    }
   }
 
   itemSelect(item) {
@@ -59,6 +73,13 @@ export class SearchFoodComponent implements OnInit {
 
   addItem() {
     this.store.dispatch(new AddItem({ listId: this.listId, item: this.item }));
+    this.store.dispatch(new EnableAdd(false));
+    this.selected = '';
+  }
+
+  ngOnDestroy(): void {
+    this.onDestroySubject.next();
+    this.onDestroySubject.unsubscribe();
   }
 
 }

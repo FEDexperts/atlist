@@ -1,0 +1,16 @@
+:host {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .quantity {
+    &--value {
+      margin: 0;
+    }
+    &--add {
+      opacity: 0.5;
+    }
+    &--remove {
+      opacity: 0.5;
+    }
+  }
+}

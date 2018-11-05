@@ -17,6 +17,8 @@ export function reducer(state: State = initialState, action) {
             return Object.assign({}, state, { selected: action.payload });
         case missingListActionsTypes.ADD_ITEM_SUCCESS:
             return Object.assign({}, state, { list: action.payload });
+        case missingListActionsTypes.REMOVE_ITEM_SUCCESS:
+            return Object.assign({}, state, { list: action.payload });
         default:
             return state;
     }

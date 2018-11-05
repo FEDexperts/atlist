@@ -7,6 +7,7 @@ export enum missingListActionsTypes {
     GET_SINGLE_SUCCESS = '[MissingList] Get single item success',
     ADD_ITEM = '[MissingList] Add item',
     ADD_ITEM_SUCCESS = '[MissingList] Add item success',
+    REMOVE_ITEM_SUCCESS = '[MissingList] Remove item success',
 }
 
 export class GetList implements Action {
@@ -46,10 +47,17 @@ export class AddItemSuccess implements Action {
     constructor(public payload: any) { }
 }
 
+export class RemoveItemSuccess implements Action {
+    type: string = missingListActionsTypes.REMOVE_ITEM_SUCCESS;
+
+    constructor(public payload: any) { }
+}
+
 export type missingListActions =
     GetList |
     GetListSuccess |
     GetListItem |
     GetListItemSuccess |
     AddItem |
-    AddItemSuccess;
+    AddItemSuccess |
+    RemoveItemSuccess;

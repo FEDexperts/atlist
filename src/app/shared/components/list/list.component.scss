@@ -1,23 +1,17 @@
 .list {
-    direction: rtl;
-    &__item {
-        &__title {
-        }
-        &__units {
-            width: 35%;
-        }
-        &--quantity {
-            margin: 0;
-        }
-        &--add {
-            opacity: 0.5;
-        }
-        &--remove {
-            opacity: 0.5;
-        }
+  direction: rtl;
+  &__item {
+    &__title {
     }
+    &__units {
+      width: 35%;
+    }
+  }
+  &--slide_options {
+    direction: ltr;
+  }
 }
 
 .action {
-    cursor: pointer;
+  cursor: pointer;
 }

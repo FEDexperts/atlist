@@ -30,6 +30,7 @@ export class MissingListPage implements OnInit {
       .pipe(
         select(getListState),
         filter(list => list),
+        tap(list => console.log(list)),
       )
 
     this.store.dispatch(new GetList({ listId: 1 }));

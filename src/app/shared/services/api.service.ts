@@ -16,4 +16,10 @@ export class ApiService {
   post(url, params?): Observable<any> {
     return this.http.post(url, params);
   }
+
+  delete(url, paramList?): Observable<any> {
+    return this.http.delete(url, {
+      params: paramList
+    });
+  }
 }

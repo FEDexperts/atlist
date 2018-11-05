@@ -7,7 +7,7 @@
     </div>
   </div>
   <ion-list class="search__list" *ngIf="showList">
-    <ion-item *ngFor="let item of items$ | async" lines="none" slot="right" (click)="itemSelect(item)">
+    <ion-item *ngFor="let item of items" lines="none" slot="right" (click)="itemSelect(item)">
       <ion-label>{{item.FoodName}}</ion-label>
     </ion-item>
   </ion-list>
