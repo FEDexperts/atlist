@@ -1,17 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ListItem } from '../shared/interaces/list-item.interface';
-import { ApiService } from '../shared/services/api.service';
-import { environment } from '../../environments/environment';
-import { filter, tap } from 'rxjs/operators';
+import { filter } from 'rxjs/operators';
 import { Store, select } from '@ngrx/store';
-import { GetList, GetListItem } from './store';
+import { GetList, GetSingle } from './store';
 
 import * as fromMissingList from './store';
-import { getListState, getSelectedState } from './store/missing-list.selectors';
+import { getListState } from './store/missing-list.selectors';
 import { food } from '../shared/interaces/food.interface';
-import { EnableAdd } from '../shared/components/search-food/store/search-food.actions';
-import { isUndefined } from 'util';
 
 @Component({
   selector: 'app-missing-list',
@@ -30,24 +26,13 @@ export class MissingListPage implements OnInit {
       .pipe(
         select(getListState),
         filter(list => list),
-        tap(list => console.log(list)),
       )
 
-    this.store.dispatch(new GetList({ listId: 1 }));
-
-    this.store
-      .pipe(
-        select(getSelectedState),
-        filter(res => !isUndefined(res)),
-        tap(res => {
-          this.store.dispatch(new EnableAdd(!res));
-        }),
-      )
-      .subscribe()
+    this.store.dispatch(new GetList());
   }
 
   itemSelected(item) {
-    this.store.dispatch(new GetListItem({ listId: 1, foodId: item.FoodId }));
+    this.store.dispatch(new GetSingle(item));
   }
 
 }

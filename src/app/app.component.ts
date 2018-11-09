@@ -30,6 +30,7 @@ export class AppComponent {
     private statusBar: StatusBar
   ) {
     this.initializeApp();
+    localStorage.setItem('user', '2');
   }
 
   initializeApp() {

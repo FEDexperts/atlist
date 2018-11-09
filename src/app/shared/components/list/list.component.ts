@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { ListItem } from '../../interaces/list-item.interface';
 import { Store } from '@ngrx/store';
-import { ListValueChange, ListRemoveItem } from './store';
+import { ListValueChange, RemoveListItem } from './store';
 
 @Component({
   selector: 'app-list',
@@ -28,7 +28,7 @@ export class ListComponent implements OnInit {
   }
 
   onRemoveItem(item) {
-    this.store.dispatch(new ListRemoveItem({
+    this.store.dispatch(new RemoveListItem({
       item
     }));
   }

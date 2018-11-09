@@ -12,8 +12,6 @@ export enum missingListActionsTypes {
 
 export class GetList implements Action {
     type: string = missingListActionsTypes.GET_LIST;
-
-    constructor(public payload: { listId: number }) { }
 }
 
 export class GetListSuccess implements Action {
@@ -23,13 +21,13 @@ export class GetListSuccess implements Action {
     }
 }
 
-export class GetListItem implements Action {
+export class GetSingle implements Action {
     type: string = missingListActionsTypes.GET_SINGLE;
 
-    constructor(public payload: { listId: number, foodId: number }) { }
+    constructor(public payload: any) { }
 }
 
-export class GetListItemSuccess implements Action {
+export class GetSingleSuccess implements Action {
     type: string = missingListActionsTypes.GET_SINGLE_SUCCESS;
 
     constructor(public payload: any) { }
@@ -56,8 +54,8 @@ export class RemoveItemSuccess implements Action {
 export type missingListActions =
     GetList |
     GetListSuccess |
-    GetListItem |
-    GetListItemSuccess |
+    GetSingle |
+    GetSingleSuccess |
     AddItem |
     AddItemSuccess |
     RemoveItemSuccess;

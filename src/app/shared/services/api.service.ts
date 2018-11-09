@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -9,17 +9,21 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  get<T>(url, params?): Observable<T> {
+  get<T>(url: string, params?): Observable<T> {
     return this.http.get<T>(url, { params: params });
   }
 
-  post(url, params?): Observable<any> {
-    return this.http.post(url, params);
+  post(url: string, body?): Observable<any> {
+    return this.http.post(url, body);
   }
 
-  delete(url, paramList?): Observable<any> {
+  delete(url: string, paramList?): Observable<any> {
     return this.http.delete(url, {
       params: paramList
     });
+  }
+
+  put(url: string, body?: any): Observable<any> {
+    return this.http.put(url, body)
   }
 }

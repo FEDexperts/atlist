@@ -23,10 +23,7 @@ export class SearchFoodComponent implements OnInit, OnDestroy {
   enableAdd$: Observable<boolean>;
   onDestroySubject = new Subject();
 
-  private item;
-
-  @Input()
-  listId: number;
+  private item: food;
 
   @Output()
   onItemSelect = new EventEmitter();
@@ -43,7 +40,6 @@ export class SearchFoodComponent implements OnInit, OnDestroy {
         select(getSearchResultsState),
         filter(res => res && res.length),
         tap(res => {
-          console.log(res)
           this.items = res;
           this.showList = true;
         }),
@@ -72,7 +68,7 @@ export class SearchFoodComponent implements OnInit, OnDestroy {
   }
 
   addItem() {
-    this.store.dispatch(new AddItem({ listId: this.listId, item: this.item }));
+    this.store.dispatch(new AddItem({ itemId: this.item.FoodId }));
     this.store.dispatch(new EnableAdd(false));
     this.selected = '';
   }

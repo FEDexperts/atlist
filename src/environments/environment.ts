@@ -4,7 +4,8 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 export const environment = {
   production: false,
-  url: 'http://localhost:3000/'
+  dev: false,
+  url: 'http://localhost/mybuylistwebapi/'
 };
 
 /*

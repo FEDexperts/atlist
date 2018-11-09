@@ -7,7 +7,7 @@ import { StoreModule } from '@ngrx/store';
 
 import * as fromSearchFood from './components/search-food/store'
 import { EffectsModule } from '@ngrx/effects';
-import { QuantityComponent } from './components/list/quantity/quantity.component';
+import { InputNumberComponent } from './components/Input-number/Input-number.component';
 
 const SHARED_COMPONENTS = [
   SearchFoodComponent,
@@ -23,7 +23,7 @@ const SHARED_COMPONENTS = [
   ],
   declarations: [
     ...SHARED_COMPONENTS,
-    QuantityComponent,
+    InputNumberComponent,
   ],
   exports: [
     ...SHARED_COMPONENTS,

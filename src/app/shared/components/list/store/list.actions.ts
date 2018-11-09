@@ -11,7 +11,7 @@ export class ListValueChange implements Action {
     constructor(public payload: any) { }
 }
 
-export class ListRemoveItem implements Action {
+export class RemoveListItem implements Action {
     type: string = listActionsTypes.REMOVE_ITEM;
 
     constructor(public payload: any) { }
@@ -19,4 +19,4 @@ export class ListRemoveItem implements Action {
 
 export type listActions =
     ListValueChange |
-    ListRemoveItem;
+    RemoveListItem;
