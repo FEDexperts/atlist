@@ -15,9 +15,7 @@ import { of } from "rxjs";
 import { ApiService } from "../../shared/services/api.service";
 import { environment } from "../../../environments/environment";
 import { ListValueChange, listActionsTypes, RemoveListItem } from "../../shared/components/list/store";
-import { isNullOrUndefined } from "util";
-import { EnableAdd } from "../../shared/components/search-food/store/search-food.actions";
-import { response } from "../../shared/interaces/response";
+import { SearchEnableAdd, SearchReset } from "../../shared/components/search-food/store/search-food.actions";
 
 @Injectable()
 export class MissingEffects {
@@ -30,8 +28,9 @@ export class MissingEffects {
             switchMap(action => {
                 return this.api.get(`${environment.url}api/lists/missing/${this.listId}`)
                     .pipe(
-                        map((res: { errorCode: number, results: any[] }) => {
-                            return new GetListSuccess(res.results);
+                        map(res => {
+                            console.log('results', res);
+                            return new GetListSuccess(res);
                         }),
                     )
             }),
@@ -44,8 +43,8 @@ export class MissingEffects {
             switchMap(action => {
                 return this.api.get(`${environment.url}api/lists/missing/${this.listId}/${action.payload.FoodId}`)
                     .pipe(
-                        map((res: response) => {
-                            return new EnableAdd(res.results.length === 0);
+                        map((res: any[]) => {
+                            return new SearchEnableAdd(res.length === 0);
                         })
                     )
             })
@@ -58,8 +57,8 @@ export class MissingEffects {
             switchMap(action => {
                 return this.api.post(`${environment.url}api/lists/missing/${this.listId}`, { foodId: action.payload.itemId })
                     .pipe(
-                        map((res: response) => {
-                            return new AddItemSuccess(res.results[0]);
+                        map(res => {
+                            return new GetList();
                         })
                     )
             }),
@@ -82,8 +81,8 @@ export class MissingEffects {
             switchMap(action => {
                 return this.api.delete(`${environment.url}api/lists/missing/${this.listId}/${action.payload.item.itemId}`)
                     .pipe(
-                        map((res: response) => {
-                            return new RemoveItemSuccess(res.results);
+                        map(res => {
+                            return new RemoveItemSuccess(res);
                         })
                     )
             })

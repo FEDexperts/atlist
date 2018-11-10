@@ -5,7 +5,6 @@ import { SearchActionTypes, Search, SearchSuccess } from "./search-food.actions"
 import { switchMap, map, tap } from "rxjs/operators";
 import { food } from "../../../interaces/food.interface";
 import { environment } from "../../../../../environments/environment";
-import { response } from "../../../interaces/response";
 
 @Injectable()
 export class SearchEffects {
@@ -17,8 +16,8 @@ export class SearchEffects {
             switchMap(action => {
                 return this.api.get<food[]>(`${environment.url}api/foods/search`, { searchValue: action.payload.searchValue })
                     .pipe(
-                        map((res: response) => {
-                            return new SearchSuccess(res.results);
+                        map(res => {
+                            return new SearchSuccess(res);
                         })
                     )
             })

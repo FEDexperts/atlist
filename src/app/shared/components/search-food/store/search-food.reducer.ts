@@ -16,9 +16,11 @@ export function reducer(state: State = initialState, action: SearchActions) {
         case SearchActionTypes.SEARCH:
             return Object.assign({}, state, { searchValue: action.payload.searchValue });
         case SearchActionTypes.SEARCH_SUCCESS:
-            return Object.assign({}, state, { results: action.payload })
-        case SearchActionTypes.ENABLE_ADD:
-            return Object.assign({}, state, { enableAdd: action.payload })
+            return Object.assign({}, state, { results: action.payload });
+        case SearchActionTypes.SEARCH_ENABLE_ADD:
+            return Object.assign({}, state, { enableAdd: action.payload });
+        case SearchActionTypes.SEARCH_RESET:
+            return Object.assign({}, state, { results: null });
         default:
             return state;
     }

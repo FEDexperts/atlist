@@ -4,7 +4,7 @@ import { food } from '../../interaces/food.interface';
 
 import * as fromSearch from './store';
 import { Store, select } from '@ngrx/store';
-import { Search, EnableAdd } from './store/search-food.actions';
+import { Search, SearchEnableAdd, SearchReset } from './store/search-food.actions';
 import { getSearchResultsState, getSearchEnableAddState } from './store/search-food.selectors';
 import { AddItem } from '../../../missing-list/store';
 import { tap, filter, takeUntil } from 'rxjs/operators';
@@ -69,7 +69,8 @@ export class SearchFoodComponent implements OnInit, OnDestroy {
 
   addItem() {
     this.store.dispatch(new AddItem({ itemId: this.item.FoodId }));
-    this.store.dispatch(new EnableAdd(false));
+    this.store.dispatch(new SearchEnableAdd(false));
+    this.store.dispatch(new SearchReset());
     this.selected = '';
   }
 
