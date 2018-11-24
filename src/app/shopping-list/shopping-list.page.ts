@@ -3,7 +3,7 @@ import { ApiService } from '../shared/services/api.service';
 import { environment } from '../../environments/environment';
 import { filter, tap, take, map, distinctUntilChanged, throttleTime, debounceTime, debounce } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { ListItem } from '../shared/interaces/list-item.interface';
+import { ListItem } from '../shared/types/list-item.interface';
 
 @Component({
   selector: 'app-shopping-list',

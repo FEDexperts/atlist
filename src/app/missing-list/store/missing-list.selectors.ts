@@ -3,7 +3,7 @@ import { getMissingListState } from "../../store";
 
 export const getListState = createSelector(
     getMissingListState,
-    missingList => missingList.list
+    missingList => missingList.results
 )
 
 export const getSelectedState = createSelector(

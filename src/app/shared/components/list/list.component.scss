@@ -1,8 +1,6 @@
-.list {
+:host {
   direction: rtl;
   &__item {
-    &__title {
-    }
     &__units {
       width: 35%;
     }

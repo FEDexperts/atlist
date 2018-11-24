@@ -3,7 +3,7 @@ import { Actions, Effect, ofType } from "@ngrx/effects";
 import { ApiService } from "../../../services/api.service";
 import { SearchActionTypes, Search, SearchSuccess } from "./search-food.actions";
 import { switchMap, map, tap } from "rxjs/operators";
-import { food } from "../../../interaces/food.interface";
+import { food } from "../../../types/food.interface";
 import { environment } from "../../../../../environments/environment";
 
 @Injectable()

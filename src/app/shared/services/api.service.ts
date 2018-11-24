@@ -13,8 +13,8 @@ export class ApiService {
     return this.http.get<T>(url, { params: params });
   }
 
-  post(url: string, body?): Observable<any> {
-    return this.http.post(url, body);
+  post<T>(url: string, body?): Observable<T> {
+    return this.http.post<T>(url, body);
   }
 
   delete(url: string, paramList?): Observable<any> {
@@ -23,7 +23,11 @@ export class ApiService {
     });
   }
 
-  put(url: string, body?: any): Observable<any> {
-    return this.http.put(url, body)
+  put<T>(url: string, body?: any): Observable<T> {
+    return this.http.put<T>(url, body)
+  }
+
+  patch<T>(url: string, body?: any): Observable<T> {
+    return this.http.patch<T>(url, body)
   }
 }
