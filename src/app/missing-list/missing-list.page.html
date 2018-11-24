@@ -1,4 +1,2 @@
-<div>
-  <app-search-food (onItemSelect)="itemSelected($event)"></app-search-food>
-  <app-list [items$]="listItems$"></app-list>
-</div>
+<app-search-food [addEnabled]="addEnabled" (itemSelect)="onItemSelected($event)" (searchChange)="onSearchChange($event)"></app-search-food>
+<app-list [items$]="listItems$" [units$]="units$" (onRemove)="removeItem($event)" (onValueChange)="valueChanged($event)"></app-list>

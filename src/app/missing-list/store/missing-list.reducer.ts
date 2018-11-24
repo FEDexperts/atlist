@@ -1,24 +1,24 @@
-import { missingListActionsTypes, missingListActions } from "./missing-list.actions";
+import { listActionsTypes } from "../../core/list";
 
 export interface State {
-    list: any,
+    results: any,
     selected?: any,
 }
 
 const initialState: State = {
-    list: null,
+    results: null,
 };
 
 export function reducer(state: State = initialState, action) {
     switch (action.type) {
-        case missingListActionsTypes.GET_LIST_SUCCESS:
-            return Object.assign({}, state, { list: action.payload });
-        case missingListActionsTypes.GET_SINGLE_SUCCESS:
+        case listActionsTypes.GET_LIST_SUCCESS:
+            return Object.assign({}, state, { results: action.payload });
+        case listActionsTypes.GET_SINGLE_SUCCESS:
             return Object.assign({}, state, { selected: action.payload });
-        case missingListActionsTypes.ADD_ITEM_SUCCESS:
-            return Object.assign({}, state, { list: action.payload });
-        case missingListActionsTypes.REMOVE_ITEM_SUCCESS:
-            return Object.assign({}, state, { list: action.payload });
+        case listActionsTypes.ADD_ITEM_SUCCESS:
+            return Object.assign({}, state, { results: action.payload });
+        case listActionsTypes.REMOVE_ITEM_SUCCESS:
+            return Object.assign({}, state, { results: action.payload });
         default:
             return state;
     }

@@ -1,26 +1,35 @@
-.search {
-  width: 80%;
+:host {
+  width: 90%;
   margin: 10px auto;
-  direction: rtl;
-  &__container {
+  height: 50px;
+
+  .search-bar {
+    display: flex;
+    height: 40px;
+  }
+
+  .search {
     border: 1px solid;
     border-radius: 10px;
     display: flex;
     align-items: center;
     margin-right: 5px;
     width: 100%;
+
+    &--input {
+      border: none;
+      direction: rtl;
+      margin-right: 10px;
+    }
+
+    &--add {
+      position: relative;
+      left: 5px;
+      cursor: pointer;
+    }
   }
-  &__field {
-    border: none;
-    direction: rtl;
-    margin-right: 10px;
-  }
-  &__add {
-    position: relative;
-    left: 5px;
-    cursor: pointer;
-  }
-  &__list {
+
+  .list {
     width: inherit;
     height: 150px;
     position: absolute;
@@ -29,6 +38,7 @@
     margin-top: 2px;
     border-radius: 10px;
     z-index: 1;
+    direction: rtl;
     ion-item {
       font-size: 14px;
       height: 25px;
@@ -37,8 +47,4 @@
       }
     }
   }
-}
-
-.content {
-  display: flex;
 }

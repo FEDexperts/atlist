@@ -13,9 +13,9 @@ import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
-import { reducers } from './store';
 import { EffectsModule } from '@ngrx/effects';
 import { AppInterceptor } from './app.interceptor';
+import { ListEffects } from './core/list/list.effects';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,8 +25,8 @@ import { AppInterceptor } from './app.interceptor';
     IonicModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
-    StoreModule.forRoot(reducers),
-    EffectsModule.forRoot([]),
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot([ListEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production, // Restrict extension to log-only mode

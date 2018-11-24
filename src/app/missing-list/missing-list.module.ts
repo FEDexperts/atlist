@@ -12,7 +12,7 @@ import { LayoutModule } from '../layout/layout.module';
 import { StoreModule } from '@ngrx/store';
 import { reducer } from './store';
 import { EffectsModule } from '@ngrx/effects';
-import { MissingEffects } from './store/missing-list.effects';
+import { MissingListEffects } from './store/missing-list.effects';
 
 const routes: Routes = [
   {
@@ -28,17 +28,17 @@ const routes: Routes = [
 ];
 
 @NgModule({
+  declarations: [MissingListPage],
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     RouterModule.forChild(routes),
-    StoreModule.forFeature('missingList', reducer),
-    EffectsModule.forFeature([MissingEffects]),
+    StoreModule.forFeature('missing-list', reducer),
+    EffectsModule.forFeature([MissingListEffects]),
     LayoutModule,
     SharedModule,
   ],
-  declarations: [MissingListPage],
   providers: [
     {
       provide: 'PAGE_TITLE',
