@@ -7,6 +7,24 @@ import { tap, switchMap, map, takeLast, mergeMap } from "rxjs/operators";
 export class AppInterceptor implements HttpInterceptor {
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+
+        const token = localStorage.getItem('token');
+        if (token) {
+            req = req.clone({
+                setHeaders: {
+                    'Authorization': 'Basic ' + token
+                }
+            })
+        } else {
+            if (req.body) {
+                req = req.clone({
+                    setHeaders: {
+                        'Authorization': 'Basic ' + btoa(`${req.body['userName']}:${req.body['password']}`)
+                    }
+                })
+            }
+        }
+
         return next.handle(req)
             .pipe(
                 switchMap((event: HttpEvent<any>) => {

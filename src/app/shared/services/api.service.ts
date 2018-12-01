@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEvent } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -13,13 +13,13 @@ export class ApiService {
     return this.http.get<T>(url, { params: params });
   }
 
-  post<T>(url: string, body?): Observable<T> {
+  post<T>(url: string, body?, options?): Observable<T> {
     return this.http.post<T>(url, body);
   }
 
-  delete(url: string, paramList?): Observable<any> {
+  delete(url: string, params?): Observable<any> {
     return this.http.delete(url, {
-      params: paramList
+      params: params
     });
   }
 
