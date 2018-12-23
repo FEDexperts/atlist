@@ -48,13 +48,13 @@ export class ShoppingListPage implements OnInit {
   }
 
   onValueChanged(e) {
-    // this.store.dispatch(new UpdateItem({
-    //   list: listConfig.shopping,
-    //   id: e.item.itemId,
-    //   data: {
-    //     value: e.value,
-    //   }
-    // }));
+    this.store.dispatch(new UpdateItem({
+      list: listConfig.shopping,
+      id: e.item.itemId,
+      data: {
+        value: e.value,
+      }
+    }));
   }
 
   onRemove(e) {

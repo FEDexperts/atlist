@@ -3,6 +3,7 @@ import {Action} from '@ngrx/store';
 export enum listActionsTypes {
     GET_LIST = '[List] Get list',
     GET_LIST_SUCCESS = '[List] Get list success',
+    GET_LIST_FAILURE = '[List] Get list failure',
     GET_SINGLE = '[List] Get single item',
     GET_SINGLE_SUCCESS = '[List] Get single item success',
     GET_SINGLE_FAILURE = '[List] Get single item failure',
@@ -14,6 +15,7 @@ export enum listActionsTypes {
     REMOVE_ITEM_FAILURE = '[List] Remove item failure',
     UPDATE_ITEM = '[List] Update list item',
     UPDATE_ITEM_SUCCESS = '[List] Update list item success',
+    UPDATE_ITEM_FAILURE = '[List] Update list item failure',
     ENABLE_ADD = '[List] Enable add item',
 }
 
@@ -26,6 +28,13 @@ export class GetList implements Action {
 
 export class GetListSuccess implements Action {
     type: string = listActionsTypes.GET_LIST_SUCCESS;
+
+    constructor(public payload: any) {
+    }
+}
+
+export class GetListFailure implements Action {
+    type: string = listActionsTypes.GET_LIST_FAILURE;
 
     constructor(public payload: any) {
     }
@@ -82,6 +91,16 @@ export class RemoveItem implements Action {
 
 export class RemoveItemSuccess implements Action {
     type: string = listActionsTypes.REMOVE_ITEM_SUCCESS;
+
+    constructor(public payload: any) {
+    }
+}
+
+export class RemoveItemFailure implements Action {
+    type: string = listActionsTypes.REMOVE_ITEM_FAILURE;
+
+    constructor(public payload: any) {
+    }
 }
 
 export class UpdateItem implements Action {
@@ -93,6 +112,13 @@ export class UpdateItem implements Action {
 
 export class UpdateItemSuccess implements Action {
     type: string = listActionsTypes.UPDATE_ITEM_SUCCESS;
+
+    constructor(public payload: any) {
+    }
+}
+
+export class UpdateItemFailure implements Action {
+    type: string = listActionsTypes.UPDATE_ITEM_FAILURE;
 
     constructor(public payload: any) {
     }

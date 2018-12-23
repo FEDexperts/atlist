@@ -1,23 +1,23 @@
-import { Injectable } from "@angular/core";
-import { Effect, Actions, ofType } from "@ngrx/effects";
-import { ApiService } from "../../shared/services/api.service";
-import { switchMap, map, tap, catchError } from "rxjs/operators";
+import {Injectable} from '@angular/core';
+import {Effect, Actions, ofType} from '@ngrx/effects';
+import {ApiService} from '../../shared/services/api.service';
+import {switchMap, map, catchError} from 'rxjs/operators';
 import {
     listActionsTypes,
     GetListSuccess,
     GetSingle,
     GetList,
     GetSingleSuccess,
-    AddItem
-} from ".";
-import { environment } from "../../../environments/environment";
-import { RemoveItem, RemoveItemSuccess, UpdateItem, GetSingleFailure } from "./list.actions";
-import { of } from "rxjs";
+    RemoveItemFailure, UpdateItemSuccess, UpdateItemFailure, GetListFailure
+} from '.';
+import {environment} from '../../../environments/environment';
+import {RemoveItem, RemoveItemSuccess, UpdateItem, GetSingleFailure} from './list.actions';
+import {of} from 'rxjs';
 
 @Injectable()
 export class ListEffects {
 
-    @Effect({ dispatch: false })
+    @Effect({dispatch: false})
     hello$ = this.actions$
         .pipe(
             ofType<GetList>(listActionsTypes.GET_LIST),
@@ -25,7 +25,7 @@ export class ListEffects {
                 return this.api.get(`${environment.url}/lists/hello`)
                     .subscribe(res => console.log('atlist => ', res));
             }),
-        )
+        );
 
     @Effect()
     get$ = this.actions$
@@ -37,9 +37,10 @@ export class ListEffects {
                         map(res => {
                             return new GetListSuccess(res);
                         }),
+                        catchError(err => of(new GetListFailure(err))),
                     );
             }),
-        )
+        );
 
     @Effect()
     getSingle$ = this.actions$
@@ -54,7 +55,7 @@ export class ListEffects {
                         catchError(err => of(new GetSingleFailure(err))),
                     );
             })
-        )
+        );
 
     @Effect()
     removeItem$ = this.actions$
@@ -63,15 +64,15 @@ export class ListEffects {
             switchMap(action => {
                 return this.api.delete(`${environment.url}/${action.payload.list.listService}/${action.payload.id}`)
                     .pipe(
-                        map(() => {
-                            return new GetList({ list: action.payload.list });
-                        })
-                        // catchError(err => of )
+                        map(res => {
+                            return new RemoveItemSuccess(res);
+                        }),
+                        catchError(err => of(new RemoveItemFailure(err))),
                     );
             })
-        )
+        );
 
-    @Effect({ dispatch: false })
+    @Effect({dispatch: false})
     updateItem$ = this.actions$
         .pipe(
             ofType<UpdateItem>(listActionsTypes.UPDATE_ITEM),
@@ -79,7 +80,9 @@ export class ListEffects {
                 return this.api.patch(`${environment.url}/${action.payload.list.listService}/${action.payload.id}`, action.payload.data)
                     .pipe(
                         map(res => {
-                        })
+                            return new UpdateItemSuccess(res);
+                        }),
+                        catchError(err => of(new UpdateItemFailure(err))),
                     );
             })
         );
