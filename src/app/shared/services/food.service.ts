@@ -13,6 +13,6 @@ export class FoodService {
   constructor(private api: ApiService) { }
 
   search(value): Observable<food[]> {
-    return this.api.get<food[]>(`${environment.url}api/foods/search`, { searchValue: value });
+    return this.api.get<food[]>(`${environment.url}/foods/search`, { searchValue: value });
   }
 }

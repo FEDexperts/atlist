@@ -11,7 +11,7 @@ export class InputNumberComponent implements OnInit {
   value: number;
 
   @Output()
-  onValueChange = new EventEmitter();
+  valueChanged = new EventEmitter();
 
   constructor() { }
 
@@ -20,13 +20,13 @@ export class InputNumberComponent implements OnInit {
 
   add() {
     this.value += 1;
-    this.onValueChange.emit(this.value);
+    this.valueChanged.emit(this.value);
   }
 
   remove() {
     if (this.value === 0) return;
     this.value -= 1;
-    this.onValueChange.emit(this.value);
+    this.valueChanged.emit(this.value);
   }
 
 }

@@ -1,7 +1,7 @@
-import { HttpInterceptor, HttpHandler, HttpRequest, HttpEvent, HttpResponse } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { Observable, of } from "rxjs";
-import { tap, switchMap, map, takeLast, mergeMap } from "rxjs/operators";
+import {HttpInterceptor, HttpHandler, HttpRequest, HttpEvent, HttpResponse} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Observable, of} from 'rxjs';
+import {tap, switchMap, map, takeLast, mergeMap} from 'rxjs/operators';
 
 @Injectable()
 export class AppInterceptor implements HttpInterceptor {
@@ -14,16 +14,18 @@ export class AppInterceptor implements HttpInterceptor {
                 setHeaders: {
                     'Authorization': 'Basic ' + token
                 }
-            })
+            });
         } else {
-            if (req.body) {
+            if (req.body && req.body['userName'] && req.body['password']) {
                 req = req.clone({
                     setHeaders: {
                         'Authorization': 'Basic ' + btoa(`${req.body['userName']}:${req.body['password']}`)
                     }
-                })
+                });
             }
         }
+
+        console.log('atlist token (interceptor) =>', token);
 
         return next.handle(req)
             .pipe(
@@ -31,13 +33,12 @@ export class AppInterceptor implements HttpInterceptor {
                     if (event instanceof HttpResponse) {
 
                         if (event.body.results) {
-                            event = event.clone({ body: event.body.results });
+                            event = event.clone({body: event.body.results});
                         }
 
                     }
                     return of(event);
                 })
-            )
+            );
     }
-
 }

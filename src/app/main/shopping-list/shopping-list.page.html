@@ -1,0 +1,3 @@
+<search-food (addItem)="onAddItem($event)" (itemSelect)="onItemSelected($event)"></search-food>
+<app-list [items$]="listItems$" [units$]="units$" (remove)="onRemove($event)" (valueChanged)="onValueChanged($event)"
+    (unitChanged)="onUnitChanged($event)"></app-list>

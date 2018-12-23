@@ -2,6 +2,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ListItem } from '../../types/list-item.interface';
 import { Store } from '@ngrx/store';
+import { IUnit } from '../../types/unit';
 
 @Component({
   selector: 'app-list',
@@ -14,13 +15,16 @@ export class ListComponent {
   items$: Observable<ListItem[]>;
 
   @Input()
-  units$: Observable<{ unitId: number, unitName: string }[]>;
+  units$: Observable<IUnit[]>;
 
   @Output()
-  onValueChange = new EventEmitter();
+  valueChanged = new EventEmitter();
 
   @Output()
-  onRemove = new EventEmitter();
+  remove = new EventEmitter();
+
+  @Output()
+  unitChanged = new EventEmitter();
 
   constructor(private store: Store<any>) { }
 

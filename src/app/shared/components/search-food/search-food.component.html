@@ -1,6 +1,6 @@
 <div class="search-bar">
   <div class="search">
-    <ion-icon *ngIf="_addEnabled" class="search--add icon" name="add" (click)="addItem()"></ion-icon>
+    <ion-icon *ngIf="addEnabled" class="search--add icon" name="add" (click)="onAddItem()"></ion-icon>
     <ion-input #searchValue class="search--input" (ionInput)="onSearch(searchValue.value)" [value]="value"></ion-input>
   </div>
   <ion-img class="search-barcode" src="assets/barcode.png"></ion-img>
