@@ -4,7 +4,8 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Store } from '@ngrx/store';
-import { AppState } from './store';
+import { AppState } from './app.types';
+import { GetUnits } from './store/app.actions';
 
 @Component({
   selector: 'app-root',
@@ -24,13 +25,8 @@ export class AppComponent {
     }
   ];
 
-  constructor(
-    private platform: Platform,
-    private splashScreen: SplashScreen,
-    private statusBar: StatusBar
-  ) {
+  constructor(private platform: Platform, private splashScreen: SplashScreen, private statusBar: StatusBar, private store: Store<AppState>) {
     this.initializeApp();
-    localStorage.setItem('user', '2');
   }
 
   initializeApp() {
@@ -38,5 +34,7 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+
+    this.store.dispatch(new GetUnits());
   }
 }

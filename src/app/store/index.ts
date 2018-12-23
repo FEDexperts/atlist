@@ -1,19 +1,9 @@
-import { ActionReducerMap, createFeatureSelector } from '@ngrx/store';
+import { createSelector, createFeatureSelector } from '@ngrx/store';
+import { IUnit } from '../shared/types/unit';
+import { AppState, GeneralState } from '../app.types';
 
-import { } from "@ngrx/store";
+export * from './app.reducer';
 
-import * as fromMissingList from '../missing-list/store';
-import * as fromSearchFoodState from '../shared/components/search-food/store';
-
-export interface AppState {
-    missingList: fromMissingList.State,
-    search: fromSearchFoodState.State
-}
-
-export const reducers: ActionReducerMap<AppState> = {
-    missingList: fromMissingList.reducer,
-    search: fromSearchFoodState.reducer
-}
-
-export const getMissingListState = createFeatureSelector<fromMissingList.State>('missingList');
-export const getSearchState = createFeatureSelector<fromSearchFoodState.State>('search');
+export const getGeneralState = createFeatureSelector<GeneralState>('general');
+export const getUnitsState = createSelector(getGeneralState, state => state.units);
+export const getEnableAddState = createSelector(getGeneralState, state => state.enableAdd);

@@ -1,0 +1,17 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content padding>
+  <ion-item>
+    <ion-label position="floating">User Name</ion-label>
+    <ion-input #userName></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Password</ion-label>
+    <ion-input #password></ion-input>
+  </ion-item>
+  <ion-button (click)="login(userName.value, password.value)">Login</ion-button>
+</ion-content>

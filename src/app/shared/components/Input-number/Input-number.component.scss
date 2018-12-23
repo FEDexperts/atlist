@@ -2,6 +2,16 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 60px;
+  text-align: center;
+
+  .action {
+    border: 1px solid;
+    border-radius: 50%;
+    font-size: 18px;
+    background-color: #ff9b41;
+  }
+
   .input-number {
     &--value {
       margin: 0;

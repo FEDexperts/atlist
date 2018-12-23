@@ -1,36 +1,31 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
-import { ListItem } from '../../interaces/list-item.interface';
+import { ListItem } from '../../types/list-item.interface';
 import { Store } from '@ngrx/store';
-import { ListValueChange, RemoveListItem } from './store';
+import { IUnit } from '../../types/unit';
 
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss']
 })
-export class ListComponent implements OnInit {
+export class ListComponent {
 
   @Input()
   items$: Observable<ListItem[]>;
 
+  @Input()
+  units$: Observable<IUnit[]>;
+
+  @Output()
+  valueChanged = new EventEmitter();
+
+  @Output()
+  remove = new EventEmitter();
+
+  @Output()
+  unitChanged = new EventEmitter();
+
   constructor(private store: Store<any>) { }
-
-  ngOnInit() {
-  }
-
-  onValueChanged(item, value) {
-    this.store.dispatch(new ListValueChange({
-      item,
-      value
-    }));
-  }
-
-  onRemoveItem(item) {
-    this.store.dispatch(new RemoveListItem({
-      item
-    }));
-  }
 
 }

@@ -1,10 +1,15 @@
-.list {
+:host {
   direction: rtl;
-  &__item {
-    &__title {
+  .item {
+    font-size: small;
+    font-weight: 600;
+    ion-select.unit {
+      font-size: inherit;
+      width: 30%;
     }
-    &__units {
-      width: 35%;
+
+    ion-icon.trash {
+      font-size: 24px;
     }
   }
   &--slide_options {

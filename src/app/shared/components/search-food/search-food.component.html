@@ -1,14 +1,12 @@
-<div class="search">
-  <div class="content">
-    <ion-img src="assets/barcode.png"></ion-img>
-    <div class="search__container">
-      <ion-input #input class="search__field" placeholder="חפש פריט" (ionInput)="search(input.value)" [value]="selected"></ion-input>
-      <ion-icon *ngIf="enableAdd$ | async" class="search__add icon" name="add" (click)="addItem()"></ion-icon>
-    </div>
+<div class="search-bar">
+  <div class="search">
+    <ion-icon *ngIf="addEnabled" class="search--add icon" name="add" (click)="onAddItem()"></ion-icon>
+    <ion-input #searchValue class="search--input" (ionInput)="onSearch(searchValue.value)" [value]="value"></ion-input>
   </div>
-  <ion-list class="search__list" *ngIf="showList">
-    <ion-item *ngFor="let item of items" lines="none" slot="right" (click)="itemSelect(item)">
-      <ion-label>{{item.FoodName}}</ion-label>
-    </ion-item>
-  </ion-list>
+  <ion-img class="search-barcode" src="assets/barcode.png"></ion-img>
 </div>
+<ion-list class="list" *ngIf="showList">
+  <ion-item *ngFor="let item of (items$ | async)" lines="none" slot="right" (click)="onItemSelect(item)">
+    <ion-label>{{item.FoodName}}</ion-label>
+  </ion-item>
+</ion-list>

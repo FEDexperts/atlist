@@ -10,20 +10,29 @@ export class ApiService {
   constructor(private http: HttpClient) { }
 
   get<T>(url: string, params?): Observable<T> {
+    console.log(`atlist get url => ${url}`, url);
     return this.http.get<T>(url, { params: params });
   }
 
-  post(url: string, body?): Observable<any> {
-    return this.http.post(url, body);
+  post<T>(url: string, body?, options?): Observable<any> {
+    console.log(`atlist post url => ${url}`, url, body);
+    return this.http.post<T>(url, body);
   }
 
-  delete(url: string, paramList?): Observable<any> {
+  delete(url: string, params?): Observable<any> {
+    console.log(`atlist delete url => ${url}`, url);
     return this.http.delete(url, {
-      params: paramList
+      params: params
     });
   }
 
-  put(url: string, body?: any): Observable<any> {
-    return this.http.put(url, body)
+  put<T>(url: string, body?: any): Observable<T> {
+    console.log(`atlist put url => ${url}`, url);
+    return this.http.put<T>(url, body);
+  }
+
+  patch<T>(url: string, body?: any): Observable<T> {
+    console.log(`atlist patch url => ${url}`, url);
+    return this.http.patch<T>(url, body);
   }
 }

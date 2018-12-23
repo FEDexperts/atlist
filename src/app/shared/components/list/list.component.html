@@ -1,18 +1,16 @@
-<div class="list">
-  <ion-list lines="none">
-    <ion-item class="list__item" lines="none" *ngFor="let item of items$ | async">
-      <ion-label class="list__item__title">{{item.itemName}}</ion-label>
-      <ion-select class="list__item__units" interface="action-sheet" placeholder="בחר יחידה">
-        <ion-select-option>יחידה</ion-select-option>
-      </ion-select>
-      <ion-item lines="none">
-        <app-Input-number [value]="item.value" (valueChanged)="onValueChanged(item, $event)"></app-Input-number>
-      </ion-item>
-      <ion-icon class="list--slide_icon" name="trash" (click)="onRemoveItem(item)"></ion-icon>
+<ion-list>
+  <ion-item class="item" *ngFor="let item of items$ | async">
+    <ion-label class="title">{{item.itemName}}</ion-label>
+    <ion-select #select class="unit" interface="action-sheet" placeholder="בחר יחידה" (ionChange)="unitChanged.emit({item: item, selected: select.value})">
+      <ion-select-option *ngFor="let unit of units$ | async" [selected]="unit.unitId == item.itemUnitId" [value]="unit">{{unit.unitName}}</ion-select-option>
+    </ion-select>
+    <ion-item class="quantity" lines="none">
+      <app-Input-number [value]="item.value" (valueChanged)="valueChanged.emit({item: item, value: $event})"></app-Input-number>
     </ion-item>
-  </ion-list>
+    <ion-icon class="trash" name="trash" (click)="remove.emit(item)"></ion-icon>
+  </ion-item>
+</ion-list>
 
-  <ng-template #loading>
-    <ion-spinner name="lines"></ion-spinner>
-  </ng-template>
-</div>
+<ng-template #loading>
+  <ion-spinner name="lines"></ion-spinner>
+</ng-template>
